@@ -1,9 +1,5 @@
-# Ignore configuration files with sensitive information
-/js/analytics-config.js
-/js/email-config.js
 
 # Optional: Ignore all config files except the template and specific ones
-/js/*-config.js
 !/js/config.template.js
 !/js/analytics-config.js  # Allow this file
 !/js/email-config.js      # Allow this file
