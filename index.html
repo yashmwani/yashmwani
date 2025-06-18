@@ -439,7 +439,7 @@
 
         .projects-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2.5rem;
         }
 
@@ -517,6 +517,32 @@
             font-size: 0.95rem;
             line-height: 1.7;
             flex-grow: 1;
+        }
+
+        .project-details {
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .project-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-details li {
+            margin-bottom: 0.6rem;
+            position: relative;
+            padding-left: 1.2rem;
+            color: var(--gray);
+        }
+
+        .project-details li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
         }
 
         .project-links {
@@ -1101,6 +1127,22 @@
             .projects-container {
                 grid-template-columns: 1fr;
             }
+
+            .certifications-container {
+                grid-template-columns: 1fr;
+            }
+
+            .certification-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .certification-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1362,6 +1404,128 @@
         .spinner {
             margin-left: 0.5rem;
         }
+
+        .certifications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .certification-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        .certification-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .certification-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .certification-info {
+            flex: 1;
+        }
+
+        .certification-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+
+        .certification-issuer {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .certification-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .certification-description {
+            color: var(--gray);
+            line-height: 1.6;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .certification-description p {
+            margin-bottom: 1.5rem;
+        }
+
+        .certification-skills {
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .certification-skills h4 {
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .certification-skills ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .certification-skills li {
+            margin-bottom: 0.6rem;
+            position: relative;
+            padding-left: 1.2rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .certification-skills li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .certification-card .certificate-btn {
+            align-self: center;
+            margin-top: auto;
+        }
+
+        .education-container {
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -1375,6 +1539,7 @@
                 <a href="#experience" class="nav-link">Experience</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#publications" class="nav-link">Publications</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
                 <a href="#education" class="nav-link">Education</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
@@ -1395,6 +1560,7 @@
             <a href="#experience" class="mobile-nav-link">Experience</a>
             <a href="#projects" class="mobile-nav-link">Projects</a>
             <a href="#publications" class="mobile-nav-link">Publications</a>
+            <a href="#certifications" class="mobile-nav-link">Certifications</a>
             <a href="#education" class="mobile-nav-link">Education</a>
             <a href="#contact" class="mobile-nav-link">Contact</a>
         </nav>
@@ -1585,7 +1751,15 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Medicine Expert System</h3>
-                        <p class="project-description">Developed a website that provides users with seamless access to comprehensive medical information and instant disease predictions. Enhanced healthcare accessibility and decision-making by integrating advanced algorithms, achieving 78% accuracy in disease prediction, and offering real-time insights for better patient outcomes and informed choices.</p>
+                        <p class="project-description">Developed a comprehensive healthcare website that provides users with seamless access to medical information and instant disease predictions.</p>
+                        <div class="project-details">
+                            <ul>
+                                <li>Enhanced healthcare accessibility and decision-making by integrating advanced machine learning algorithms</li>
+                                <li>Achieved 78% accuracy in disease prediction using comprehensive symptom analysis</li>
+                                <li>Implemented real-time insights for better patient outcomes and informed medical choices</li>
+                                <li>Built user-friendly interface with responsive design for cross-platform compatibility</li>
+                            </ul>
+                        </div>
                         <div class="project-links">
                             <a href="https://github.com/yashmwani/Healthmate" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> GitHub
@@ -1601,7 +1775,15 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">UTD CS Course Management System</h3>
-                        <p class="project-description">Developing a web-based course management system for UTD using HTML, CSS, JavaScript, PHP, and SQL with XAMPP. Responsibilities include extracting course offerings, generating SQL statements, and creating a dynamic PHP-based web interface for managing course data.</p>
+                        <p class="project-description">Developing a comprehensive web-based course management system for UTD using modern web technologies and database management.</p>
+                        <div class="project-details">
+                            <ul>
+                                <li>Extracting and organizing course offerings from UTD's academic database</li>
+                                <li>Generating optimized SQL statements for efficient data retrieval and management</li>
+                                <li>Creating dynamic PHP-based web interface for managing course data</li>
+                                <li>Implementing user authentication and role-based access control system</li>
+                            </ul>
+                        </div>
                         <div class="project-links">
                             <a href="https://github.com/yashmwani/UTD_Coursebook" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> GitHub
@@ -1617,10 +1799,42 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Shortest Path Timing Analysis for Circuit Design</h3>
-                        <p class="project-description">Developed a C/C++ program to compute the shortest delay path in ISCAS'85 benchmark circuits using Dijkstra's algorithm. Modeled circuits as graphs, calculated gate delays based on fan-outs, and ensured functionality on UTD's engineering server.</p>
+                        <p class="project-description">Developed a C/C++ program to compute the shortest delay path in ISCAS'85 benchmark circuits using advanced algorithms.</p>
+                        <div class="project-details">
+                            <ul>
+                                <li>Modeled complex circuits as directed graphs for efficient path analysis</li>
+                                <li>Calculated gate delays based on fan-outs and circuit complexity</li>
+                                <li>Implemented Dijkstra's algorithm for optimal path computation</li>
+                                <li>Ensured functionality and compatibility on UTD's engineering server environment</li>
+                            </ul>
+                        </div>
                         <div class="project-links">
                             <a href="https://github.com/yashmwani/Shortest-Path-Timing" class="project-link">
                                 <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NewsNexus Daily -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">NewsNexus Daily</h3>
+                        <p class="project-description">Developed a full-stack web application using Node.js, Express, and MongoDB Atlas to deliver personalized news summaries to subscribers.</p>
+                        <div class="project-details">
+                            <ul>
+                                <li>Integrated OpenAI's GPT models to automatically summarize news articles</li>
+                                <li>Reduced at least 300 seconds of setup and reading time per user</li>
+                                <li>Built scalable backend with RESTful APIs for subscription management</li>
+                                <li>Implemented email delivery system ensuring seamless user experience</li>
+                            </ul>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://newsnexusdaily.onrender.com/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
                     </div>
@@ -1650,6 +1864,72 @@
                     <div class="publication-date">2022</div>
                     <p class="publication-description">A copyrighted system that uses machine learning algorithms to predict diseases based on symptoms input by users, offering an accessible solution for preliminary health diagnostics.</p>
                     <button onclick="openModal('copyrightModal')" class="btn">View Certificate</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="fade-in">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certifications-container">
+                <!-- Generative AI Certificate -->
+                <div class="certification-card">
+                    <div class="certification-header">
+                        <div class="certification-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="certification-info">
+                            <h3 class="certification-title">Generative AI: Prompt Engineering Basics</h3>
+                            <div class="certification-issuer">IBM</div>
+                            <div class="certification-date">2025</div>
+                        </div>
+                    </div>
+                    <div class="certification-description">
+                        <p>Comprehensive course covering the fundamentals of prompt engineering for generative AI models, focusing on techniques to improve AI output quality and reliability.</p>
+                        <div class="certification-skills">
+                            <h4>Key Learning Outcomes:</h4>
+                            <ul>
+                                <li>Explain the concept, relevance, and best practices of prompt engineering to guide generative AI models in producing meaningful, accurate outputs</li>
+                                <li>Apply prompt engineering techniques to text prompts, improving the reliability and quality of large language models</li>
+                                <li>Practice prompt engineering techniques and approaches, including interview pattern, chain-of-thought, tree-of-thought, to improve prompt outcomes</li>
+                                <li>Explore commonly used tools for prompt engineering to aid with prompt engineering</li>
+                            </ul>
+                        </div>
+                        <button class="certificate-btn" onclick="openModal('genaiModal')">
+                            <i class="fas fa-award"></i> View Certificate
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AWS Cloud Certificate -->
+                <div class="certification-card">
+                    <div class="certification-header">
+                        <div class="certification-icon">
+                            <i class="fab fa-aws"></i>
+                        </div>
+                        <div class="certification-info">
+                            <h3 class="certification-title">Introduction to Information Technology and AWS Cloud</h3>
+                            <div class="certification-issuer">Amazon Web Services</div>
+                            <div class="certification-date">2025</div>
+                        </div>
+                    </div>
+                    <div class="certification-description">
+                        <p>Comprehensive introduction to information technology fundamentals and AWS cloud computing services, providing hands-on experience with modern cloud infrastructure and networking concepts.</p>
+                        <div class="certification-skills">
+                            <h4>Key Learning Outcomes:</h4>
+                            <ul>
+                                <li>Gain a foundational understanding of how computers work, including hardware components, operating systems, and basic computing concepts</li>
+                                <li>Learn how computers communicate and exchange data through networking protocols, IP addressing, and network architecture</li>
+                                <li>Understand cloud computing fundamentals including virtualization, scalability, and the shared responsibility model</li>
+                                <li>Explore AWS core services including EC2, S3, VPC, and IAM for building secure and scalable cloud solutions</li>
+                            </ul>
+                        </div>
+                        <button class="certificate-btn" onclick="openModal('awsModal')">
+                            <i class="fas fa-award"></i> View Certificate
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1907,6 +2187,64 @@
                                 <i class="fas fa-eye"></i> View PDF
                             </a>
                             <a href="copyright.pdf" download class="pdf-fallback-btn pdf-download-btn">
+                                <i class="fas fa-download"></i> Download PDF
+                            </a>
+                        </div>
+                    </div>
+                </object>
+            </div>
+        </div>
+    </div>
+
+    <div class="certificate-modal" id="genaiModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Generative AI: Prompt Engineering Basics Certificate</div>
+                <div class="modal-controls">
+                    <a href="Gen AI.pdf" download class="download-pdf" title="Download Certificate">
+                        <i class="fas fa-download"></i> Download Certificate
+                    </a>
+                    <span class="close-modal" title="Close">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <object data="Gen AI.pdf" type="application/pdf" class="pdf-object">
+                    <div class="pdf-fallback">
+                        <p>Your browser doesn't support embedded PDFs.</p>
+                        <div class="pdf-fallback-buttons">
+                            <a href="Gen AI.pdf" target="_blank" class="pdf-fallback-btn pdf-view-btn">
+                                <i class="fas fa-eye"></i> View PDF
+                            </a>
+                            <a href="Gen AI.pdf" download class="pdf-fallback-btn pdf-download-btn">
+                                <i class="fas fa-download"></i> Download PDF
+                            </a>
+                        </div>
+                    </div>
+                </object>
+            </div>
+        </div>
+    </div>
+
+    <div class="certificate-modal" id="awsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Introduction to Information Technology and AWS Cloud Certificate</div>
+                <div class="modal-controls">
+                    <a href="Introduction to Information Technology and AWS Cloud.pdf" download class="download-pdf" title="Download Certificate">
+                        <i class="fas fa-download"></i> Download Certificate
+                    </a>
+                    <span class="close-modal" title="Close">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <object data="Introduction to Information Technology and AWS Cloud.pdf" type="application/pdf" class="pdf-object">
+                    <div class="pdf-fallback">
+                        <p>Your browser doesn't support embedded PDFs.</p>
+                        <div class="pdf-fallback-buttons">
+                            <a href="Introduction to Information Technology and AWS Cloud.pdf" target="_blank" class="pdf-fallback-btn pdf-view-btn">
+                                <i class="fas fa-eye"></i> View PDF
+                            </a>
+                            <a href="Introduction to Information Technology and AWS Cloud.pdf" download class="pdf-fallback-btn pdf-download-btn">
                                 <i class="fas fa-download"></i> Download PDF
                             </a>
                         </div>
